@@ -36,8 +36,8 @@ GC（Garbage Collection）是一种自动的管理内存机制，当某个程序
 #### Serial GC
 年轻代使用 Serial 收集器，老年代使用 Serial Old 收集器，两者都是单线程的垃圾收集器，不能进行并行处理，所以都会触发 STW，停止所有的应用线程。该 GC CPU 利用率高，暂停时间长，适合小内存、单核 CPU 使用。
 
-### Parallel GC
+#### Parallel GC
 年轻代使用 Parallel Scavenge，老年代使用 Parallel Old 收集器，两者垃圾回收都会触发 STW。该 GC 适用于多核服务器，主要目标是增加吞吐量。
 
-### CMS GC
+#### CMS GC
 年轻代使用 ParNew 收集器，老年代使用 CMS 收集器，年轻代会触发 STW，老年代会触发较短 STW，CMS GC 的设计目标是避免老年代垃圾收集时出现长时间的卡顿，如果服务器是多核 CPU，并且主要调优目标是降低 GC 停顿导致的系统延迟，使用 CMS GC 是不错的选择。
